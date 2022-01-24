@@ -5,7 +5,7 @@ from game import Game
 pygame.init()
 
 # Generate window
-pygame.display.set_caption('Name')
+pygame.display.set_caption('P L A G U E   D O D G E')
 window = pygame.display.set_mode((1400 , 720))
 
 # import backgrounds
