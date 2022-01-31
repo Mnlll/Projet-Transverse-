@@ -1,5 +1,4 @@
 import pygame
-
 from bot import Bot
 
 # Game class
@@ -11,12 +10,11 @@ class Game:
         # Generate player
         # Generate obstacles
         # Generate NPC
+        self.grp_bots = pygame.sprite.Group()
         # Generate sound
         # Initialize score
         self.score = 0
         self.font = pygame.font.SysFont('Courrier', 50)
-        # Group of bots
-        self.grp_bots = pygame.sprite.Group()
         # Catch events
         self.pressed = {}
         self.apparition_bot()
@@ -26,6 +24,7 @@ class Game:
         self.is_running = True
         # Show obstacles
         # Show NPC
+        # game.grp_bots.draw(background)
 
     # Game over
     def game_over(self):
@@ -51,7 +50,7 @@ class Game:
         # Keep obstacles
 
         # Keep NPC
-
+        self.grp_bots.draw(window)
         # Apply obstacles animation
 
         # Apply obstacles NPC
