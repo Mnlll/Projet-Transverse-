@@ -21,6 +21,7 @@ game = Game()
 # Show window
 run = True
 while run :
+    game.start()
     # Show background
 
     # Check if game is running
@@ -29,6 +30,9 @@ while run :
         game.update(window)
     # else:
         # Welcome window:
+        
+    # Refresh window
+    pygame.display.flip()
 
     # Check events
     for event in pygame.event.get():
@@ -37,8 +41,7 @@ while run :
             run = False
             pygame.quit()
 
-    # Refresh window
-    pygame.display.flip()
+    
 
     # Merge FPS with clock
     clock.tick(FPS)
