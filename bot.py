@@ -8,7 +8,7 @@
 # si virus touche voiture ---> +5 points
 ####### OPTIONAL TASKS #######
 # - vacciné : bleu
-# annimer les perso
+# animer les perso
 
 import pygame
 
@@ -23,7 +23,7 @@ class Bot(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.life_max = 30
         self.life = 30
-        self.velocity = 50
+        self.velocity = 3
         self.rect.x = 1000
         self.rect.y = 350
 
@@ -71,4 +71,3 @@ class Bot(pygame.sprite.Sprite):
 ########## A METTRE DANS LE MAIN #############
 # pour faire apparaître les bots sur l'ecran
 # game.grp_bot.draw(fond)
-
