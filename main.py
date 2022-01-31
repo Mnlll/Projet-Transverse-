@@ -13,7 +13,7 @@ background = pygame.image.load('assets/background.png')
 
 # Frames Per Second
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 80
 
 # Load game
 game = Game()
@@ -21,15 +21,22 @@ game = Game()
 # Show window
 run = True
 while run :
+    game.start()
+
     # Show background
+    window.blit(background, (0, -200))
+
     # Check if game is running
     if game.is_running:
         # Run game
         game.update(window)
+
     else:
         # Welcome window:
         window.blit(background, (0, 0))
-        pygame.display.flip()
+
+    # refresh window
+    pygame.display.flip()
 
     # Check events
     for event in pygame.event.get():
@@ -38,19 +45,16 @@ while run :
             run = False
             pygame.quit()
 
-    # Refresh window
-    # pygame.display.flip()
+
 
     # Merge FPS with clock
     clock.tick(FPS)
 
-    # Spawn bots on the screen
-    game.grp_bots.draw(background)
+
 
     # To get the bots back
     for bot in game.grp_bots:
         bot.go_forward()
-
 
 
 
