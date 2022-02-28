@@ -1,5 +1,13 @@
 import pygame
-from bot import Bot
+from bot import Man
+from bot import Woman
+from bot import OldWoman
+from bot import OldMan
+from bot import OldManSick
+from player import Player
+
+import time
+
 
 # Game class
 class Game:
@@ -17,11 +25,19 @@ class Game:
         self.font = pygame.font.SysFont('Courrier', 50)
         # Catch events
         self.pressed = {}
-        self.apparition_bot()
+        self.player = Player()
+        for i in range(5):
+            self.apparition_bot(Man)
+            self.apparition_bot(Woman)
+            self.apparition_bot(OldWoman)
+            self.apparition_bot(OldMan)
 
     # Start game
     def start(self):
         self.is_running = True
+        #self.apparition_bot(Man)
+        #self.apparition_bot(Woman)
+
         # Show obstacles
         # Show NPC
         # game.grp_bots.draw(background)
@@ -45,6 +61,7 @@ class Game:
 
         # Show player
 
+
         # Refresh player animation
 
         # Keep obstacles
@@ -54,18 +71,23 @@ class Game:
         # Apply obstacles animation
 
         # Apply obstacles NPC
+        #for bot in self.grp_bots:
+            #bot.go_forward()
 
         # Check fly
         # if self.pressed.get(pygame.K_SPACE): # Mettre condition pour que le player ne sorte pas de la fenetre
             # self.player.fly()
-        #else:
+        # else:
             # Player tombe avec gravité
 
     # Collision with entity
-    #def check_collision(self, sprite, group):
-        #return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
+    def check_collision(self, sprite, group):
+        return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     # Spawn entity
-    def apparition_bot(self):
-        bot = Bot()
-        self.grp_bots.add(bot)
+    def apparition_bot(self, bot_class_name):
+        self.grp_bots.add(bot_class_name.__call__(self))
+        
+
+
+

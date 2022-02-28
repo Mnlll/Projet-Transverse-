@@ -1,14 +1,4 @@
-# Créer class bot : humains + voitures qui se baladent dans la ville
-# 4 types de perso : homme( noir )  / femme ( asiatique ) / enfant (europeen ) / vieux (latino )
-# Voitures
-# contaminé : rougir
-# non contaminé : blanc
-# si virus touche bot ---> bot infecté ---> bot devient rouge
-# si virus touche bot ---> +1 point
-# si virus touche voiture ---> +5 points
-####### OPTIONAL TASKS #######
-# - vacciné : bleu
-# animer les perso
+import random
 
 import pygame
 
@@ -16,58 +6,79 @@ import pygame
 class Bot(pygame.sprite.Sprite):
 
     # Définition des caractéristiques des bot
-    def __init__(self):
+    def __init__(self, game, name):
         super().__init__()
-        # bot habillé en blanc au départ
-        self.image = pygame.image.load('assets/tanjiro.png')
+        self.game = game
+        self.image = pygame.image.load(f'assets/{name}.png')
+        self.image = pygame.transform.scale(self.image, (150, 150))
         self.rect = self.image.get_rect()
-        self.life_max = 30
-        self.life = 30
-        self.velocity = 3
-        self.rect.x = 1000
-        self.rect.y = 350
+        self.velocity = random.randint(1, 5)
+        self.rect.x = random.randint(1700, 2400)
+        self.rect.y = 500
 
     # Pour mettre les bots en mouvement
-
 
     def go_forward(self):
         self.rect.x -= self.velocity
 
 
+# Create class for the man
+class Man(Bot):
+
+    # ne fonctionne pas
+    def __init__(self, game):
+        super().__init__(game, 'man')
+        #while game.start:
+            #if self.game.check_collision(game.player, game.grp_bots):
+                #super().__init__('man_sick', game)
+                #print("OKKKK")
 
 
+# Create class for the sick man
+class SickMan(Bot):
+
+    def __init__(self, game):
+        super().__init__(game, 'man_sick')
 
 
+# Create class for the woman
+class Woman(Bot):
+
+    def __init__(self, game):
+        super().__init__(game, 'woman')
 
 
+# Create class for the sick woman
+class SickWoman(Bot):
+
+    def __init__(self, game):
+        super().__init__(game, 'woman_sick')
 
 
+# Create class for the old man
+class OldMan(Bot):
+
+    def __init__(self, game):
+        super().__init__(game, 'old_man')
 
 
+# Create class for the old man sick
+class OldManSick(Bot):
+
+    def __init__(self, game):
+        super().__init__(game, 'old_man_sick')
 
 
-########### A METTRE DANS LA CLASSE GAME ###########
+# Create class for the old woman
+class OldWoman(Bot):
 
-# Appel de la classe Bot pour ajouter les bots au jeu
-# from bot import Bot
-
-    # dans le init
-    # self.grp_bot = pygame.sprite.Group()
-    # self.apparition_bot()
-
-    # def apparition_bot(self):
-        # bot = Bot()
-        # self.grp_bot.add(bot)
-
-# Lorsqu'un bot rencontre le virus
-# si virus touche bot ---> bot infecté ---> bot devient rouge
-
-    # def collision_virus(self,sprite,Group):
-        # return pygame.sprite.spritecollide(sprite,group,False, pygame.sprite.collide_mask())
+    def __init__(self, game):
+        super().__init__(game, 'old_woman')
 
 
+# Create class for the old woman sick
+class OldWomanSick(Bot):
 
+    def __init__(self, game):
+        super().__init__(game, 'old_woman_sick')
 
-########## A METTRE DANS LE MAIN #############
-# pour faire apparaître les bots sur l'ecran
-# game.grp_bot.draw(fond)
